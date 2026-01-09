@@ -1,9 +1,19 @@
-import requests
-import pandas as pd
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Data from giving.sg is injected dynamically by JavaScript, so we use API calls via POST requests to get the data directly.
+# A POST request requires a URL, a JSON payload, and headers (to mimic a real browser request).
+# These can be found by inspecting the network traffic in the browser's developer tools while navigating the website.
+
+# One thing to note is the moduleVersion and apiVersion in the payloads.
+# These versions may change over time as the website is updated, which may break the code, so we have to update them accordingly by checking the network traffic again.
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Import necessary libraries
+import requests         # For making HTTP requests to scrape the website
+import pandas as pd     # For creating dataframes to store scraped data into Excel files
 
 from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
 
-
+# Headers are constant for all requests
 headers = {
     "Content-Type": "application/json",
     "Cookies": "osVisitor=ab568d35-ada5-4e33-8b24-409ea3b13fa2; nr1Users=lid%3dAnonymous%3btuu%3d0%3bexp%3d0%3brhs%3dXBC1ss1nOgYW1SmqUjSxLucVOAg%3d%3bhmc%3dODE1uhixQBFObTvV7Oa%2bAblvPQ8%3d; nr2Users=crf%3dT6C%2b9iB49TLra4jEsMeSckDMNhQ%3d%3buid%3d0%3bunm%3d; gsgCookieConsent=false; osVisit=11c3c1fb-e875-4b23-b012-114ad89c9c5c",
