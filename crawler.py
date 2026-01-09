@@ -804,7 +804,7 @@ def scrapeCampaignData():
 
     return campaignData
 
-
+# Write data to Excel
 def main():
     scrapeCharityData().to_excel("Data.xlsx", sheet_name="Charities")
     with pd.ExcelWriter(
